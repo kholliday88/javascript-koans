@@ -4,6 +4,8 @@ Based on Edgecase's fantastic
 Javascript koans is to teach you Javascript programming through
 testing.
 
+This repo is derived from [Javascript Koans](https://github.com/mrdavidlaing/javascript-koans).
+
 When you first run the koans, you'll be presented with a runtime error and a
 stack trace indicating where the error occurred. Your goal is to make the
 error go away. As you fix each error, you should learn something about the
