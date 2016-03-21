@@ -1,100 +1,73 @@
-describe("About Functions", function() {
+describe("About Functions", function () {
 
-  it("should declare functions", function() {
+    it("should declare functions", function () {
 
-    function add(a, b) {
-      return a + b;
-    }
+        function add(a, b) {
+            return a + b;
+        }
 
-    expect(add(1, 2)).toBe(FILL_ME_IN);
-  });
+        expect(add(1, 2)).toBe(FILL_ME_IN);
+    });
 
-  it("should know internal variables override outer variables", function () {
-    var message = "Outer";
+    it("should know internal variables override outer variables", function () {
+        var message = "Outer";
 
-    function getMessage() {
-      return message;
-    }
+        function getMessage() {
+            return message;
+        }
 
-    function overrideMessage() {
-      var message = "Inner";
-      return message;
-    }
+        function overrideMessage() {
+            var message = "Inner";
+            return message;
+        }
 
-    expect(getMessage()).toBe(FILL_ME_IN);
-    expect(overrideMessage()).toBe(FILL_ME_IN);
-    expect(message).toBe(FILL_ME_IN);
-  });
+        expect(getMessage()).toBe(FILL_ME_IN);
+        expect(overrideMessage()).toBe(FILL_ME_IN);
+        expect(message).toBe(FILL_ME_IN);
+    });
 
-  it("should have lexical scoping", function () {
-    var variable = "top-level";
-    function parentfunction() {
-      var variable = "local";
-      function childfunction() {
-        return variable;
-      }
-      return childfunction();
-    }
-    expect(parentfunction()).toBe(FILL_ME_IN);
-  });
+    it("should allow extra function arguments", function () {
 
-  it("should use lexical scoping to synthesise functions", function () {
+        function returnFirstArg(firstArg) {
+            return firstArg;
+        }
 
-    function makeMysteryFunction(makerValue)
-    {
-      var newFunction = function doMysteriousThing(param)
-      {
-        return makerValue + param;
-      };
-      return newFunction;
-    }
+        expect(returnFirstArg("first", "second", "third")).toBe(FILL_ME_IN);
 
-    var mysteryFunction3 = makeMysteryFunction(3);
-    var mysteryFunction5 = makeMysteryFunction(5);
+        function returnSecondArg(firstArg, secondArg) {
+            return secondArg;
+        }
 
-    expect(mysteryFunction3(10) + mysteryFunction5(5)).toBe(FILL_ME_IN);
-  });
+        expect(returnSecondArg("only give first arg")).toBe(FILL_ME_IN);
 
-  it("should allow extra function arguments", function () {
+        function returnAllArgs() {
+            var argsArray = [];
+            for (var i = 0; i < arguments.length; i += 1) {
+                argsArray.push(arguments[i]);
+            }
+            return argsArray.join(",");
+        }
 
-    function returnFirstArg(firstArg) {
-      return firstArg;
-    }
+        expect(returnAllArgs("first", "second", "third")).toBe(FILL_ME_IN);
+    });
 
-    expect(returnFirstArg("first", "second", "third")).toBe(FILL_ME_IN);
+    it("should pass functions as values", function () {
 
-    function returnSecondArg(firstArg, secondArg) {
-      return secondArg;
-    }
+        var appendRules = function (name) {
+            return name + " rules!";
+        };
 
-    expect(returnSecondArg("only give first arg")).toBe(FILL_ME_IN);
+        var appendDoubleRules = function (name) {
+            return name + " totally rules!";
+        };
 
-    function returnAllArgs() {
-      var argsArray = [];
-      for (var i = 0; i < arguments.length; i += 1) {
-        argsArray.push(arguments[i]);
-      }
-      return argsArray.join(",");
-    }
+        var praiseSinger = {
+            givePraise: appendRules
+        };
+        expect(praiseSinger.givePraise("John")).toBe(FILL_ME_IN);
 
-    expect(returnAllArgs("first", "second", "third")).toBe(FILL_ME_IN);
-  });
+        praiseSinger.givePraise = appendDoubleRules;
+        expect(praiseSinger.givePraise("Mary")).toBe(FILL_ME_IN);
 
-  it("should pass functions as values", function () {
-
-    var appendRules = function (name) {
-      return name + " rules!";
-    };
-
-    var appendDoubleRules = function (name) {
-      return name + " totally rules!";
-    };
-
-    var praiseSinger = { givePraise: appendRules };
-    expect(praiseSinger.givePraise("John")).toBe(FILL_ME_IN);
-
-    praiseSinger.givePraise = appendDoubleRules;
-    expect(praiseSinger.givePraise("Mary")).toBe(FILL_ME_IN);
-
-  });
+    });
 });
