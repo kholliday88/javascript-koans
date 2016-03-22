@@ -53,6 +53,7 @@ describe("About Applying What We Have Learnt", function() {
 
     var productsICanEat = [];
 
+
     /* solve using filter() & all() / any() */
 
     expect(productsICanEat.length).toBe(FILL_ME_IN);
